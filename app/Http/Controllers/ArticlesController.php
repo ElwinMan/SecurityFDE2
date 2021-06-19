@@ -11,9 +11,7 @@ class ArticlesController extends Controller
     public function index()
     {
 
-        return view( 'articles', [
-            'articles' => Article::latest()->get()
-        ]);
+        return view( 'articles');
     }
 
     public function show(Article $article)
