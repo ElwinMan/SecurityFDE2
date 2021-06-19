@@ -4,7 +4,7 @@
 
 <h1 class="stopBeingSoDifficult">Articles</h1>
 
-
+<nav><a href="/dashboard">dashboard</a></nav>
 <button><a href="articles/create" style="text-decoration: none"><span class="material-icons">add</span></a></button><br><br>
 @foreach($articles as $article)
     <div>
