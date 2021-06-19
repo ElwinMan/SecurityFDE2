@@ -1,6 +1,5 @@
-<x-app-layout>
-    <main>
-        test
+<main>
+    test
 {{--        <div>--}}
 {{--            <h2><a href="{{ route('articles.create') }}">Create New Article</a></h2>--}}
 {{--        </div>--}}
@@ -16,5 +15,5 @@
 {{--                    {!! $article->excerpt !!}--}}
 {{--                </li>--}}
 {{--        </div>--}}
-    </main>
-</x-app-layout>
+</main>
+
