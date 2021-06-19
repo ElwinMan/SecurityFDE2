@@ -1,6 +1,4 @@
-@extends('layout')
-
-@section('content')
+<x-app-layout>
     <main>
         <div>
             <h2><a href="{{ route('articles.create') }}">Create New Article</a></h2>
@@ -16,7 +14,6 @@
                     <hr>
                     {!! $article->excerpt !!}
                 </li>
-            @endforeach
         </div>
     </main>
-@endsection
+</x-app-layout>
