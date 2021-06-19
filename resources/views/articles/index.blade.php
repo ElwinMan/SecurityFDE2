@@ -17,4 +17,5 @@
             <button class="button1" type="submit"><span class="material-icons">delete</span></button>
         </form>
     </div>
+    <hr>
 @endforeach
