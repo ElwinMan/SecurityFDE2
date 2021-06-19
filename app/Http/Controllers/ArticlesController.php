@@ -5,20 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
-
 class ArticlesController extends Controller
 {
-    public function index()
+    public function  index()
     {
+        $articles = Article::latest()->get();
 
-        return view('articles');
+        return view('articles.index', ['articles' => $articles]);
     }
 
-    public function show(Article $article)
+    public function show(article $article)
     {
-        return view($article->path(), [
-            'article' => $article
-        ]);
+        return view('articles.show', ['article' => $article]);
     }
 
     public function create()
@@ -28,15 +26,9 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        Article::create($this->validateArticle());
+        Article::create($this->validateArticle($request));
 
-//        Article::create([
-//            'title' => request('title'),
-//            'excerpt' => request('excerpt'),
-//            'body' => request('body')
-//        ]);
-
-        return redirect('/articles');
+        return redirect(route('articles.index'));
     }
 
     public function edit(Article $article)
@@ -44,23 +36,27 @@ class ArticlesController extends Controller
         return view('articles.edit', compact('article'));
     }
 
-    public function update(Article $article)
+    public function update(Article $article, Request $request)
     {
-        $article->update($this->validateArticle());
+        $article->update($this->validateArticle($request));
 
-        return redirect('/articles');
+        return redirect(route('articles.show', $article));
     }
 
     public function destroy(Article $article)
     {
         $article->delete();
 
-        return redirect('/articles');
+        return redirect(route('articles.index'));
     }
 
-    public function validateArticle()
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function validateArticle(Request $request): array
     {
-        return request()->validate([
+        return $request->validate([
             'title' => 'required',
             'excerpt' => 'required',
             'body' => 'required'
