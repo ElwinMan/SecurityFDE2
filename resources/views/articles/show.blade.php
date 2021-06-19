@@ -1,10 +1,12 @@
-@extends('layout')
+<head>
+    <title>Articles</title>
+</head>
 
-@section('content')
-    <main>
-        <h4>{{ $article->title }}</h4>
-        <p>{{ $article->body }}</p>
-        <br>
-        <h4><a href="{{ route('articles.edit', $article) }}">Edit</a></h4>
-    </main>
-@endsection
+
+<h1 class="stopBeingSoDifficult">Articles</h1>
+
+<div class="strengths">
+    <h3>{{ $article->Title }}</h3>
+    <p>{{ $article->Body }}</a></p>
+    <button><a href="/articles/{{$article->id}}/edit">Edit</a></button>
+</div>
