@@ -1,67 +1,28 @@
-@extends('layout')
+<h1 class="stopBeingSoDifficult">create new</h1>
 
-@section('content')
-    <div id="page" class="container">
-        <h1>New Article</h1>
+<div>
+    <p>Alles met een * invullen!</p>
+    <form method="POST" action="/articles">
+        @csrf
 
-        <form method="POST" action="/articles">
-            @csrf
+        <label for="Title">* Title:</label><br>
+        <input type="text" id="Title" name="title" placeholder="Title" style="height: 42px; width: 50%">
 
-            <div class="field">
-                <label class="label" for="title">Title</label> <span class="required">*</span>
+        @error('title')
+        <p class="error">{{$errors->first('title')}}</p>
+        @enderror
+        <br><br>
+        <label for="excerpt">* Excerpt:</label><br>
+        <textarea cols="2" rows="5" type="text" id="excerpt" name="excerpt" placeholder="short version" style="height: 125px; width: 50%"></textarea>
+        @error('excerpt')
+        <p class="error">{{$errors->first('excerpt')}}</p>
+        @enderror<br><br>
+        <label for="body">* Body:</label><br>
+        <textarea cols="5" rows="5" type="text" id="body" name="body" placeholder="full version" style="height: 375px; width: 50%"></textarea>
+        @error('body')
+        <p class="error">{{$errors->first('body')}}</p>
+        @enderror<br><br>
+        <button type="submit" value="Submit">Submit</button>
+    </form>
 
-                <div class="control">
-                    <input
-                        class="input @error('title') is-danger @enderror"
-                        type="text"
-                        name="title"
-                        id="title"
-                        value="{{ old('title') }}">
-
-                    @error('title')
-                    <p class="is-danger">{{ $errors->first('title') }}</p>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label" for="excerpt">Excerpt</label> <span class="required">*</span>
-
-                <div class="control">
-                    <textarea
-                        class="textarea @error('excerpt') is-danger @enderror"
-                        name="excerpt"
-                        id="excerpt"
-                    >{{ old('excerpt') }}</textarea>
-
-                    @error('excerpt')
-                    <p class="is-danger">{{ $errors->first('excerpt') }}</p>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label" for="body">Body</label> <span class="required">*</span>
-
-                <div class="control">
-                    <textarea
-                        class="input @error('body') is-danger @enderror"
-                        name="body"
-                        id="body"
-                    >{{ old('body') }}</textarea>
-
-                    @error('body')
-                    <p class="is-danger">{{ $errors->first('body') }}</p>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link" type="submit">Submit</button>
-                </div>
-            </div>
-
-        </form>
-    </div>
-@endsection
+</div>
